@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#f7f4f2">
-<title>Massage Point — SENSORY / живые скульптуры V4</title>
+<title>Massage Point — OBJECT ATELIER / V5</title>
 <style>
 :root{--bg:#08181a;--panel:#0d2224;--line:rgba(197,232,220,.15);--text:#f4f2eb;--muted:#a7b7b3;--mint:#b4e5ce;--lime:#c7ef9f;--lav:#cdbaff;--orange:#e9ac91;--rad:28px;--ease:cubic-bezier(.19,1,.22,1)}
 *{box-sizing:border-box}html,body{margin:0;width:100%;min-height:100%;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif}body{overflow-x:hidden}button,input{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible{outline:2px solid var(--mint);outline-offset:4px}button{-webkit-tap-highlight-color:transparent}::selection{background:#bad9c7;color:#061614}
@@ -136,12 +136,55 @@ html,body{background:#f7f3f7;color:var(--text)}
 .scene.pressure-scene .dial-text b{font-weight:500;font-size:70px}
 .scene.pressure-scene .dial svg{filter:drop-shadow(0 8px 18px #bd88c34a)}
 @media(max-width:690px){.scene-corner.br{display:none}.scene-bottom-note{bottom:10px;letter-spacing:.05em;font-size:7px}}
+
+/* V5 / Object atelier: recognisable glossy product sculptures, tactile gallery. */
+.scene.product-scene{background:radial-gradient(ellipse at 52% 40%,#fffefc 0%,#f8f0f5 47%,#eae2eb 100%);overflow:hidden}
+.scene.product-scene:before{inset:12% 13%;border:1px solid #c5a2c750}
+.scene.product-scene .halo{opacity:.40}
+.scene.product-scene #artDisplay,.scene.product-scene #glCanvas,.scene.product-scene .fallback-stage{display:none!important}
+.scene.product-scene #motionSwitch{display:block!important;right:17px;top:18px}
+.product-gallery{position:absolute;inset:0;z-index:11;overflow:hidden;isolation:isolate}
+.product-gallery:before{content:"";position:absolute;left:50%;top:41%;width:400px;height:400px;border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,#eab2e36e,#fcf8fc00 68%);filter:blur(27px);pointer-events:none}
+.product-gallery .exhibit-base{position:absolute;left:50%;top:54%;width:310px;height:60px;background:radial-gradient(ellipse,#ad88af50,#b88ca300 70%);transform:translateX(-50%);filter:blur(19px);pointer-events:none}
+.product-main-art{position:absolute;left:50%;top:44%;width:clamp(205px,30vw,350px);height:clamp(205px,30vw,350px);transform:translate(-50%,-50%);filter:drop-shadow(0 19px 19px #a67b9c44);pointer-events:none;will-change:transform}
+.product-main-art svg{width:100%;height:100%;overflow:visible;animation:productFloat 5.3s ease-in-out infinite alternate,productTilt 15s ease-in-out infinite alternate;transform-origin:center center}
+@keyframes productFloat{from{transform:translate3d(-4px,5px,0) rotate(-6deg) scale(.965)}to{transform:translate3d(8px,-10px,0) rotate(7deg) scale(1.03)}}
+@keyframes productTilt{0%,100%{filter:saturate(.97)}50%{filter:saturate(1.13)}}
+.product-main-art.is-changing svg{animation:productPop .57s cubic-bezier(.17,.72,.25,1.25) both,productFloat 5.3s ease-in-out .6s infinite alternate}
+@keyframes productPop{from{opacity:.1;transform:scale(.66) translateY(35px) rotate(-23deg);filter:blur(8px)}to{opacity:1;transform:scale(1) translateY(0) rotate(0);filter:blur(0)}}
+.product-satellite{position:absolute;left:50%;top:44%;width:82px;height:82px;display:grid;place-items:center;border:1px solid #efdef0aa;border-radius:50%;background:radial-gradient(circle at 35% 26%,#ffffffdb,#ffffff51 62%,#f4dcee68);box-shadow:0 9px 22px #94739419;backdrop-filter:blur(13px);-webkit-backdrop-filter:blur(13px);color:#5c3e6b;transition:box-shadow .35s;z-index:12;touch-action:manipulation;cursor:pointer}
+.product-satellite svg{width:94%;height:94%;filter:drop-shadow(0 6px 7px #9c6e9545)}
+.product-satellite:active{box-shadow:0 0 35px #ac76b364}
+.product-satellite:focus-visible{outline:2px solid #81458d}
+.product-description{position:absolute;left:50%;top:72%;width:min(90%,370px);transform:translateX(-50%);text-align:center;color:#4d3458;z-index:17;pointer-events:none}
+.product-kicker{color:#976b9a;font-size:9px;letter-spacing:.26em;font-weight:800}
+.product-name{font-size:clamp(19px,2.2vw,29px);line-height:1.13;letter-spacing:-.035em;font-weight:650;margin:7px 0 5px}
+.product-amount{font-size:20px;font-weight:750;color:#8a4a9d}
+.product-nav{position:absolute;inset:0;pointer-events:none;z-index:18}
+.product-arrow{position:absolute;top:43%;transform:translateY(-50%);border-radius:50%;border:1px solid #cbaec9;background:#fffafaab;color:#674b6f;width:40px;height:40px;display:grid;place-items:center;font-size:23px;pointer-events:auto;box-shadow:0 5px 14px #b198b433}
+.product-arrow.prev{left:18px}.product-arrow.next{right:18px}
+.product-actions{position:absolute;left:50%;bottom:5%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;z-index:20;width:min(90%,330px)}
+.product-add{width:100%;border:0;border-radius:999px;background:#824a97;color:#fff;padding:13px 16px;font-weight:700;font-size:13px;box-shadow:0 8px 18px #9f6ca33d;touch-action:manipulation}
+.product-add.is-added{background:#e3d1e9;color:#674370;box-shadow:none}
+.product-pos{font-size:9px;letter-spacing:.21em;color:#8d728e}
+.scene.product-scene .scene-bottom-note{display:none}
+.extra-summary-box{border:1px solid #dfcae1;background:linear-gradient(135deg,#fff9ff,#f5e9f6);padding:15px;border-radius:17px;margin:12px 0;box-shadow:0 12px 25px #a576a51c}
+.extra-summary-head{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;color:#74577b;font-weight:700;letter-spacing:.07em;text-transform:uppercase}
+.extra-summary-head strong{font-size:16px;color:#854997;white-space:nowrap}
+.extra-summary-items{font-size:12px;line-height:1.6;color:#694f71;margin-top:8px;overflow-wrap:anywhere}
+.scene.product-scene .scene-corner.tl{color:#8d748d}
+.app:not(.motion-on) .product-main-art svg{animation:none!important}
+@media(max-width:980px){.product-main-art{width:clamp(185px,33vw,295px);height:clamp(185px,33vw,295px)}.product-satellite{width:64px;height:64px}}
+@media(max-width:690px){.scene.product-scene{height:455px;min-height:455px;max-height:455px;flex:none}.product-main-art{width:208px;height:208px;top:44%}.product-satellite{width:53px;height:53px}.product-description{top:69%}.product-name{font-size:22px}.product-amount{font-size:18px}.product-actions{bottom:6%;gap:6px}.product-add{padding:11px 12px;font-size:12px}.product-kicker{font-size:8px}.product-arrow{width:34px;height:34px;top:44%}.product-arrow.prev{left:7px}.product-arrow.next{right:7px}.scene.product-scene .scene-corner.tl{font-size:8px}}
+@media(max-width:390px){.scene.product-scene{height:410px;min-height:410px;max-height:410px}.product-main-art{width:190px;height:190px}.product-satellite{width:48px;height:48px}.product-description{top:68%}.product-actions{bottom:4%}}
+@media(prefers-reduced-motion:reduce){.app:not(.motion-on) .product-main-art svg{animation:none!important}}
+
 </style>
 </head>
 <body>
 <div class="app" id="app">
   <div class="aura a1"></div><div class="aura a2"></div><div class="aura a3"></div>
-  <header class="topbar"><div class="wordmark">MASSAGE POINT<span>ВАША ТОЧКА ВОССТАНОВЛЕНИЯ</span></div><div class="top-center"><span class="pulse"></span> MASSAGE POINT · DIGITAL RITUAL</div><div class="demo-badge">INTERACTIVE ART · DEMO</div></header>
+  <header class="topbar"><div class="wordmark">MASSAGE POINT<span>ВАША ТОЧКА ВОССТАНОВЛЕНИЯ</span></div><div class="top-center"><span class="pulse"></span> MASSAGE POINT · DIGITAL RITUAL</div><div class="demo-badge">OBJECT ATELIER · V5 DEMO</div></header>
   <main class="main">
     <section class="story" aria-live="polite"><div class="story-scroll" id="story"></div></section>
     <section class="scene" id="scene" aria-label="Интерактивная трёхмерная сцена">
@@ -217,13 +260,23 @@ scene.addEventListener('pointermove',e=>{if(gestureLast!==null){gestureShift+=(e
 ['pointerup','pointercancel','pointerleave'].forEach(ev=>scene.addEventListener(ev,()=>gestureLast=null));
 
 const moods=[{label:'Расслабление',desc:'Мягкий ритм и ощущение покоя.',color:'#dbc2ef',shape:2},{label:'Восстановление',desc:'Внимание к уставшим мышцам.',color:'#b4e0c4',shape:1},{label:'Энергия',desc:'Собраться и перезагрузиться.',color:'#ffc69f',shape:0},{label:'Лёгкость',desc:'Больше комфорта после дня.',color:'#bed8ed',shape:2},{label:'Баланс',desc:'Спокойствие и свежий взгляд.',color:'#eacbd1',shape:1}];
-const extras=[{label:'Велком-чай',sub:'ТРАВЯНОЙ НАПИТОК',price:'300 ₽',color:'#f5d48c',shape:1},{label:'Детокс-шот',sub:'ФУНКЦИОНАЛЬНЫЙ НАПИТОК',price:'350 ₽',color:'#ffd0aa',shape:0},{label:'Арома-масло',sub:'SIGNATURE АРОМА-МАСЛО',price:'500 ₽',color:'#e8baf0',shape:2},{label:'Патчи для глаз',sub:'ГИДРОГЕЛЕВЫЕ ПАТЧИ',price:'400 ₽',color:'#f1cedc',shape:0},{label:'Горячие камни',sub:'ТЕПЛО-ТЕРАПИЯ',price:'700 ₽',color:'#c9d7bc',shape:1},{label:'Массажный девайс',sub:'DEEP RELIEF DEVICE',price:'900 ₽',color:'#a7d6e7',shape:2},{label:'Гуа-ша',sub:'ЛИЦО И ШЕЯ',price:'600 ₽',color:'#cebde9',shape:0},{label:'Микротоки',sub:'МИКРОТОКОВЫЙ УХОД',price:'800 ₽',color:'#bce3d6',shape:1}];
+const extras=[
+ {label:'Велком-чай',sub:'ЧАЙНЫЙ РИТУАЛ',description:'Тёплый травяной напиток после сеанса.',price:'300 ₽',amount:300,color:'#f1c78d',shape:1},
+ {label:'Детокс-шот',sub:'НАПИТОК',description:'Яркий фруктово-ягодный шот.',price:'350 ₽',amount:350,color:'#f1a6a0',shape:0},
+ {label:'Арома-масло',sub:'АРОМАТЕРАПИЯ',description:'Ароматическое масло для особенного настроения.',price:'500 ₽',amount:500,color:'#dcbae7',shape:2},
+ {label:'Патчи для глаз',sub:'УХОД',description:'Охлаждающие гидрогелевые патчи.',price:'400 ₽',amount:400,color:'#f1cedc',shape:0},
+ {label:'Горячие камни',sub:'ТЕРМО-РИТУАЛ',description:'Дополнительный согревающий этап.',price:'700 ₽',amount:700,color:'#c9d7bc',shape:1},
+ {label:'Массажный девайс',sub:'МЫШЕЧНОЕ ВОССТАНОВЛЕНИЕ',description:'Акцент на проработке мышц с помощью прибора.',price:'900 ₽',amount:900,color:'#a7d6e7',shape:2},
+ {label:'Гуа-ша',sub:'РИТУАЛ ДЛЯ ЛИЦА',description:'Мягкий уход с камнем гуа-ша.',price:'600 ₽',amount:600,color:'#e8bcd5',shape:0},
+ {label:'Микротоки',sub:'АППАРАТНЫЙ УХОД',description:'Демонстрация дополнительного ухода.',price:'800 ₽',amount:800,color:'#bce3d6',shape:1}
+];
 const labels=['ЗНАКОМСТВО','ВАША ЗАПИСЬ','СОСТОЯНИЕ','ИНТЕНСИВНОСТЬ','КАРТА ТЕЛА','ДОПОЛНЕНИЯ','АТМОСФЕРА','ВАШ РИТУАЛ'];
-const stepTitles=[['Массаж, который <em>чувствует вас.</em>','Добро пожаловать в ваш персональный ритуал. Каждое прикосновение к экрану меняет цифровую скульптуру.'],['Ваша запись. <em>Ваше время.</em>','Это демонстрация. Мы покажем, как планшет подтверждает бронирование перед сеансом.'],['Что нужно <span class="lav">именно сегодня?</span>','Коснитесь любого шёлкового объекта. Они движутся по орбите; выбранный выходит на первый план.'],['Найдите свою <em>силу.</em>','Проведите по круглой шкале. Объёмная форма отреагирует на выбранную интенсивность.'],['Уделим внимание <span class="lav">важному.</span>','Отметьте на силуэте зоны, которым хотите уделить больше внимания.'],['Сеанс из <span class="peach">деталей.</span>','Дополните массаж так, как нравится вам. Выбирайте объекты на орбите — каждый реагирует на касание.'],['Настроим <em>атмосферу.</em>','Пусть весь мир на время подстроится под ваш ритм.'],['Ваш сеанс. <span class="lav">Ваш ритуал.</span>','Все пожелания собраны в одну композицию. Покажем мастеру, что важно именно вам.']];
+const stepTitles=[['Массаж, который <em>чувствует вас.</em>','Добро пожаловать в ваш персональный ритуал. Каждое прикосновение к экрану меняет цифровую скульптуру.'],['Ваша запись. <em>Ваше время.</em>','Это демонстрация. Мы покажем, как планшет подтверждает бронирование перед сеансом.'],['Что нужно <span class="lav">именно сегодня?</span>','Коснитесь любого шёлкового объекта. Они движутся по орбите; выбранный выходит на первый план.'],['Найдите свою <em>силу.</em>','Проведите по круглой шкале. Объёмная форма отреагирует на выбранную интенсивность.'],['Уделим внимание <span class="lav">важному.</span>','Отметьте на силуэте зоны, которым хотите уделить больше внимания.'],['Каждая деталь — <span class="peach">ритуал.</span>','Выбирайте настоящие предметные образы: напитки, ароматы, уход и массажные приборы.'],['Настроим <em>атмосферу.</em>','Пусть весь мир на время подстроится под ваш ритм.'],['Ваш сеанс. <span class="lav">Ваш ритуал.</span>','Все пожелания собраны в одну композицию. Покажем мастеру, что важно именно вам.']];
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const extrasTotal=()=>extras.filter(x=>state.extras.has(x.label)).reduce((sum,x)=>sum+x.amount,0);
 const formatExtraText=(full=false)=>{if(!state.extras.size)return ''; const picked=extras.filter(x=>state.extras.has(x.label)); return picked.map(x=>full?`${x.label} — ${x.price}`:`${x.label} · ${x.price}`).join(', ')};
 const row=(a,b)=>`<div class="summary-row"><span>${a}</span><strong>${esc(b||'—')}</strong></div>`;
-function summary(){return row('Гость',state.name)+row('Массаж','60 минут, 18:00')+row('Цель',moods[state.mood].label)+row('Интенсивность',state.pressure+' / 5')+row('Зоны',Array.from(state.zones).join(', ')||'Без акцентов')+row('Дополнения',formatExtraText(true)||'Не выбраны')+row('Звук',state.sound)+row('Общение',state.talk)}
+function summary(){return row('Гость',state.name)+row('Массаж','60 минут, 18:00')+row('Цель',moods[state.mood].label)+row('Интенсивность',state.pressure+' / 5')+row('Зоны',Array.from(state.zones).join(', ')||'Без акцентов')+row('Дополнения',formatExtraText(true)||'Не выбраны')+row('Допы всего',extrasTotal().toLocaleString('ru-RU')+' ₽ · демо')+row('Звук',state.sound)+row('Общение',state.talk)}
 function render(){
  let n=state.step;app.dataset.step=n;$('#count').textContent=`${String(n+1).padStart(2,'0')} / 08`;$('#progress').style.width=`${(n+1)/8*100}%`;$('#cornerLabel').textContent=`0${n+1} — ${labels[n]}`;$('#backBtn').disabled=n===0;$('#nextBtn').innerHTML=n===7?(state.sent?'Начать заново ↺':'Завершить ритуал ↗'):'Продолжить <span>↗</span>';
  const a=stepTitles[n]; let content=`<div class="micro">${String(n+1).padStart(2,'0')} / 08 · ${labels[n]}</div><h1>${a[0]}</h1><p class="subtitle">${a[1]}</p>`;
@@ -232,14 +285,14 @@ function render(){
  if(n===2)content+=`<div class="details"><div class="selected-note"><i class="dot"></i><span id="moodSelection">${moods[state.mood].label} — ${moods[state.mood].desc}</span></div><div class="screen-mode"><span></span> ЖИВЫЕ СКУЛЬПТУРЫ / DIGITAL ART</div></div>`;
  if(n===3)content+=`<div class="details"><div class="selected-note"><i class="dot"></i><span id="pressureSelection">${['','Очень мягко','Мягко','Комфортно','Глубже','Интенсивно'][state.pressure]}</span></div><p class="smallprint">Это пожелание, окончательную интенсивность мастер уточняет лично.</p></div>`;
  if(n===4)content+=`<div class="details"><div class="selected-note"><i class="dot"></i><span id="zoneSelection">${Array.from(state.zones).join(', ')||'Выберите зоны на фигуре'}</span></div><p class="smallprint">Пожелания не заменяют консультацию мастера.</p></div>`;
- if(n===5)content+=`<div class="details"><div class="selected-note"><i class="dot"></i><span id="extraSelection">${state.extras.size?'Выбрано: '+formatExtraText(): 'Коснитесь движущихся объектов'}</span></div><p class="smallprint">Каждый объект — отдельный премиум-доп. Стоимость показана в демо-прайсе прямо на карточке.</p></div>`;
+ if(n===5)content+=`<div class="details"><div class="extra-summary-box"><div class="extra-summary-head"><span id="extraCount">Выбрано: ${state.extras.size}</span><strong id="extraTotal">${extrasTotal().toLocaleString('ru-RU')} ₽</strong></div><div class="extra-summary-items" id="extraSelection">${formatExtraText()||'Пока ничего не выбрано. Листайте объекты справа.'}</div></div><p class="smallprint">Цены и доступность допов демонстрационные, их необходимо согласовать с салоном. YCLIENTS пока не подключён.</p></div>`;
  if(n===6)content+=`<div class="details"><div class="selected-note"><i class="dot"></i><span id="atmoSelection">${state.sound} · ${state.talk}</span></div></div>`;
  if(n===7)content+=`<div class="details">${state.sent?'<div class="success-mark">✓</div><div class="selected-note">Анкета оформлена в демо-режиме. В YCLIENTS ничего не отправлялось.</div>':''}<div class="summary-scroll">${summary()}</div><p class="smallprint">Пока это полностью локальная демонстрация. Для работы с настоящей записью нужна защищённая интеграция с YCLIENTS.</p></div>`;
- story.innerHTML=content;story.scrollTop=0;controls.innerHTML='';scene.className='scene';scene.dataset.step=n;artDisplay.innerHTML=heroArt();artDisplay.classList.toggle('is-visible', n!==4 && n!==3);motionSwitch.hidden=n===4;
+ story.innerHTML=content;story.scrollTop=0;controls.innerHTML='';scene.className='scene';scene.dataset.step=n;artDisplay.innerHTML=heroArt();artDisplay.classList.toggle('is-visible', n!==4 && n!==3 && n!==5);motionSwitch.hidden=n===4;
  if(n===0){$('#guestName').addEventListener('input',e=>state.name=e.target.value);$('#guestPhone').addEventListener('input',e=>state.phone=e.target.value)}
- if(n===2||n===5)makeHits(n===2?moods:extras,n===2?'mood':'extra');
+ if(n===2)makeHits(moods,'mood');if(n===5)makeProductGallery();
  if(n===3)makeDial();if(n===4)makeBodyMap();if(n===6)makeAtmosphere();
- $('#sceneNote').innerHTML=n===4?'<span class="arrow">↗</span> КОСНИТЕСЬ ЗОНЫ ТЕЛА':n===3?'<span class="arrow">↗</span> ВЕДИТЕ ПАЛЬЦЕМ ПО КОЛЬЦУ':n===2||n===5?'<span class="arrow">↗</span> КАСАЙТЕСЬ ОБЪЕКТОВ · ВРАЩЕНИЕ И ГЛУБИНА':'<span class="arrow">↗</span> MASSAGE POINT / DIGITAL RITUAL';
+ $('#sceneNote').innerHTML=n===4?'<span class="arrow">↗</span> КОСНИТЕСЬ ЗОНЫ ТЕЛА':n===3?'<span class="arrow">↗</span> ВЕДИТЕ ПАЛЬЦЕМ ПО КОЛЬЦУ':n===2?'<span class="arrow">↗</span> КАСАЙТЕСЬ ОБЪЕКТОВ · ВРАЩЕНИЕ И ГЛУБИНА':'<span class="arrow">↗</span> MASSAGE POINT / DIGITAL RITUAL';
 }
 function next(){if(state.step===0){if(!state.name.trim()||!state.phone.trim()){alert('Введите имя и телефон для демонстрационной записи.');return}const nm=state.name.trim().toLowerCase().replaceAll('ё','е');const nums=state.phone.replace(/\D/g,'');if(nm!=='александр'||!nums.endsWith('9001234567')){alert('В демонстрации доступна одна запись: Александр, +7 900 123-45-67. YCLIENTS пока не подключён.');return}}
  if(state.step===7){if(state.sent){state.step=0;state.sent=false;state.mood=0;state.pressure=3;state.zones=new Set(['Плечи']);state.extras.clear();state.sound='Тихая музыка';state.talk='Предпочитаю тишину'}else state.sent=true;
@@ -250,6 +303,89 @@ document.addEventListener('keydown',e=>{if(e.key==='Enter'&&state.step===0&&e.ta
 let hits=[],orbitType='mood',selectionAnimating=-1;
 function makeHits(items,type){orbitType=type;hits=items.map((item,i)=>{let b=document.createElement('button');b.className='orbit-hit';b.type='button';b.setAttribute('aria-label',type==='extra'?`${item.label}, ${item.price}`:item.label);const tiny=type==='extra'?`${item.sub} · ${item.price}`:'НАСТРОЕНИЕ / '+String(i+1).padStart(2,'0');const label=type==='extra'?`<span class="hit-name">${item.label}</span><span class="price-pill">${item.price}</span>`:item.label;b.innerHTML=`<span class="mini-sculpture">${miniatureArt(i,type)}</span><span class="hit-label">${label}</span><span class="tiny">${tiny}</span>`;b.addEventListener('click',()=>{if(type==='mood'){state.mood=i;$('#moodSelection').textContent=item.label+' — '+item.desc}else{if(state.extras.has(item.label))state.extras.delete(item.label);else state.extras.add(item.label);$('#extraSelection').textContent=state.extras.size?'Выбрано: '+formatExtraText():'Коснитесь движущихся объектов'}selectionAnimating=i;syncHits()});controls.appendChild(b);return b});syncHits()}
 function syncHits(){hits.forEach((h,i)=>{let active=state.step===2?i===state.mood:state.extras.has(extras[i]?.label);h.classList.toggle('active',active);h.setAttribute('aria-pressed',active?'true':'false')})}
+
+let activeProduct=2;
+function productArtwork(i){
+ const id='ob'+i;
+ const common=`<defs>
+ <radialGradient id="${id}metal" cx="29%" cy="15%" r="90%"><stop offset="0" stop-color="#ffffff"/><stop offset=".25" stop-color="#fff2fb"/><stop offset=".57" stop-color="#d8b2d7"/><stop offset=".79" stop-color="#97749e"/><stop offset="1" stop-color="#5a405c"/></radialGradient>
+ <linearGradient id="${id}glass" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#ffffff" stop-opacity=".94"/><stop offset=".18" stop-color="#e9d2ec" stop-opacity=".76"/><stop offset=".58" stop-color="#b494c9" stop-opacity=".43"/><stop offset="1" stop-color="#e0bedf" stop-opacity=".83"/></linearGradient>
+ <linearGradient id="${id}rose" x1="0" x2="1" y1="0" y2=".88"><stop stop-color="#fff9f3"/><stop offset=".28" stop-color="#efc8da"/><stop offset=".64" stop-color="#cc8cb4"/><stop offset="1" stop-color="#804a83"/></linearGradient>
+ <linearGradient id="${id}tea" x1="0" x2=".8" y1="0" y2="1"><stop stop-color="#ffedd7"/><stop offset=".4" stop-color="#f7c583"/><stop offset=".75" stop-color="#bd8166"/><stop offset="1" stop-color="#8b6358"/></linearGradient>
+ <linearGradient id="${id}device" x1="0" x2=".8" y1="0" y2="1"><stop stop-color="#fff"/><stop offset=".25" stop-color="#e4f3f0"/><stop offset=".62" stop-color="#acc2be"/><stop offset="1" stop-color="#6c8486"/></linearGradient>
+ <filter id="${id}shadow" x="-45%" y="-45%" width="190%" height="190%"><feGaussianBlur stdDeviation="13"/></filter></defs>
+ <ellipse cx="203" cy="336" rx="103" ry="19" fill="#91749a" opacity=".22" filter="url(#${id}shadow)"/>`;
+ const paths=[
+ // 0 transparent tall porcelain tea vessel + leaf + rising steam
+ `<g><ellipse cx="205" cy="315" rx="95" ry="18" fill="#e2cddf"/><ellipse cx="205" cy="311" rx="69" ry="10" fill="#fff9f7" stroke="#d5afc6" stroke-width="4"/>
+ <path d="M130 159 Q132 142 156 142 H249 Q278 144 279 166 L271 264 Q260 309 207 311 Q149 311 138 265Z" fill="url(#${id}glass)" stroke="#fff7fb" stroke-width="5"/>
+ <path d="M277 167 Q336 150 336 208 Q334 264 276 262" fill="none" stroke="url(#${id}metal)" stroke-width="17"/>
+ <path d="M149 202 Q207 213 264 201 L253 268 Q238 293 205 295 Q168 295 158 267Z" fill="url(#${id}tea)" opacity=".88"/>
+ <ellipse cx="205" cy="199" rx="58" ry="11" fill="#a86754" opacity=".54"/><ellipse cx="205" cy="161" rx="73" ry="17" fill="#f9e7eb" stroke="#fff" stroke-width="8"/>
+ <path d="M166 114 Q147 94 170 66 M209 107 Q189 81 211 56 M244 115 Q232 96 254 74" fill="none" stroke="#b48eaf" stroke-width="6" opacity=".34" stroke-linecap="round"/>
+ <path d="M167 217 Q175 273 194 277" fill="none" stroke="#fffdf5" stroke-width="11" opacity=".6" stroke-linecap="round"/></g>`,
+ // 1 transparent detox shot with red fruit content and straw
+ `<g><path d="M156 101 L176 302 Q209 323 236 302 L255 101Z" fill="url(#${id}glass)" stroke="#ffffff" stroke-width="6"/><path d="M169 148 H241 L232 285 Q205 305 182 285Z" fill="#d97280" opacity=".81"/><path d="M171 152 H240" stroke="#ffe2dc" stroke-width="13"/><ellipse cx="205" cy="101" rx="50" ry="14" fill="#fff0f2" stroke="#fff" stroke-width="6"/><path d="M215 55 L219 196" stroke="#e6afba" stroke-width="8" stroke-linecap="round"/><path d="M213 57 L253 35" stroke="#e6afba" stroke-width="7" stroke-linecap="round"/><circle cx="191" cy="232" r="15" fill="#eeb2b1" opacity=".7"/><circle cx="220" cy="267" r="9" fill="#fff1d6" opacity=".7"/><path d="M177 179 L187 269" stroke="#fff" stroke-width="11" opacity=".53" stroke-linecap="round"/></g>`,
+ // 2 aroma oil pipette with bottle
+ `<g><rect x="177" y="70" width="56" height="77" rx="14" fill="#7c5877"/><rect x="183" y="61" width="44" height="29" rx="6" fill="url(#${id}metal)"/><path d="M166 136 L243 136 Q259 145 259 167 L259 290 Q253 321 204 321 Q158 320 153 290 L153 167 Q153 144 166 136Z" fill="url(#${id}glass)" stroke="#fff6ff" stroke-width="5"/><path d="M162 187 H249 V285 Q247 305 206 309 Q165 308 161 285Z" fill="#b185ae" opacity=".56"/><rect x="165" y="208" width="80" height="69" rx="9" fill="#fffafa" opacity=".91"/><text x="205" y="239" font-size="15" fill="#785379" text-anchor="middle" font-family="Arial" letter-spacing="3">AROMA</text><text x="205" y="259" font-size="9" fill="#987e9c" text-anchor="middle" font-family="Arial" letter-spacing="2">MASSAGE POINT</text><path d="M167 166 L167 282" stroke="#fff" stroke-width="10" opacity=".65" stroke-linecap="round"/></g>`,
+ // 3 twin eye patches translucent
+ `<g><path d="M68 195 Q100 120 184 161 Q204 173 213 206 Q156 250 101 241 Q74 238 68 195Z" fill="url(#${id}rose)" stroke="#fff9fb" stroke-width="8" transform="rotate(-17 150 195)"/><path d="M187 203 Q228 118 308 150 Q340 163 343 199 Q300 248 231 244 Q207 238 187 203Z" fill="url(#${id}glass)" stroke="#fff9fb" stroke-width="8" transform="rotate(12 260 195)"/><path d="M100 175 Q133 150 175 174" fill="none" stroke="#fff" stroke-width="13" opacity=".75" stroke-linecap="round"/><path d="M239 169 Q269 148 302 170" fill="none" stroke="#fff" stroke-width="12" opacity=".78" stroke-linecap="round"/><ellipse cx="202" cy="297" rx="109" ry="10" fill="#fff9fc" stroke="#e7d1de" stroke-width="4"/></g>`,
+ // 4 spa hot polished pebbles
+ `<g><ellipse cx="215" cy="287" rx="102" ry="40" fill="#6d6a7a"/><ellipse cx="213" cy="273" rx="101" ry="39" fill="url(#${id}metal)"/><ellipse cx="195" cy="233" rx="80" ry="36" fill="#a49aa6"/><ellipse cx="195" cy="224" rx="80" ry="36" fill="url(#${id}rose)"/><ellipse cx="215" cy="185" rx="64" ry="34" fill="#b5a0b9"/><ellipse cx="211" cy="175" rx="64" ry="35" fill="url(#${id}glass)"/><path d="M172 165 Q196 144 231 153" fill="none" stroke="#fff" stroke-width="10" opacity=".7" stroke-linecap="round"/><path d="M142 225 Q179 210 205 221" fill="none" stroke="#fff" stroke-width="9" opacity=".6" stroke-linecap="round"/></g>`,
+ // 5 massage gun
+ `<g transform="rotate(-17 204 205)"><rect x="170" y="162" width="150" height="91" rx="43" fill="url(#${id}device)" stroke="#fff" stroke-width="5"/><rect x="123" y="188" width="65" height="40" rx="15" fill="#72898b"/><circle cx="120" cy="208" r="24" fill="#9bb1b2" stroke="#f7fffc" stroke-width="8"/><path d="M220 237 H270 L261 334 Q240 351 227 323Z" fill="url(#${id}metal)" stroke="#fff" stroke-width="6"/><rect x="227" y="312" width="39" height="25" rx="10" fill="#d3b6d6"/><circle cx="276" cy="207" r="20" fill="#fafbfd" stroke="#abbbc0" stroke-width="8"/><circle cx="276" cy="207" r="6" fill="#e0bddb"/><path d="M198 178 H286" stroke="#fff" stroke-width="10" opacity=".6" stroke-linecap="round"/></g>`,
+ // 6 gua sha rose quartz curved tool
+ `<g><path d="M114 174 Q101 115 157 113 Q200 106 228 143 Q257 97 306 132 Q330 156 301 216 Q275 270 207 287 Q138 296 114 235 Q104 210 114 174Z" fill="url(#${id}rose)" stroke="#fff9fb" stroke-width="9"/><path d="M145 156 Q169 142 192 159 Q210 180 229 177" fill="none" stroke="#fff4fa" stroke-width="13" opacity=".68" stroke-linecap="round"/><path d="M142 224 Q154 270 207 263" fill="none" stroke="#d381ac" stroke-width="6" opacity=".46"/><circle cx="268" cy="168" r="12" fill="#f8dceb" opacity=".9"/></g>`,
+ // 7 microcurrent device with dual metallic roller heads
+ `<g transform="rotate(7 210 208)"><path d="M188 159 L228 159 Q247 162 244 188 L231 317 Q208 347 187 317 L173 187 Q169 164 188 159Z" fill="url(#${id}device)" stroke="#fff" stroke-width="6"/><path d="M196 156 L178 100 M226 156 L245 101" stroke="#9aa6bb" stroke-width="15" stroke-linecap="round"/><circle cx="168" cy="91" r="41" fill="url(#${id}metal)" stroke="#fff8fd" stroke-width="4"/><circle cx="249" cy="91" r="41" fill="url(#${id}metal)" stroke="#fff8fd" stroke-width="4"/><path d="M188 221 L221 222" stroke="#fff" stroke-width="10" opacity=".65" stroke-linecap="round"/><circle cx="209" cy="263" r="11" fill="#bc9cca" stroke="#fff" stroke-width="3"/></g>`
+ ];
+ return `<svg viewBox="0 0 410 390" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="${extras[i].label}">${common}${paths[i]}</svg>`;
+}
+function selectedExtrasUi(){
+ const box=$('#extraSelection'),count=$('#extraCount'),total=$('#extraTotal');
+ if(box)box.textContent=formatExtraText()||'Пока ничего не выбрано. Листайте объекты справа.';
+ if(count)count.textContent='Выбрано: '+state.extras.size;
+ if(total)total.textContent=extrasTotal().toLocaleString('ru-RU')+' ₽';
+}
+function selectProduct(index){
+ activeProduct=(index+extras.length)%extras.length;
+ const cur=extras[activeProduct];
+ const art=$('#productArt'),name=$('#productName'),price=$('#productPrice'),sub=$('#productKicker'),add=$('#productAdd'),position=$('#productPos');
+ if(!art)return;
+ art.innerHTML=productArtwork(activeProduct);art.classList.remove('is-changing');void art.offsetWidth;art.classList.add('is-changing');
+ name.textContent=cur.label;price.textContent=cur.price;sub.textContent=cur.sub;position.textContent=String(activeProduct+1).padStart(2,'0')+' / '+String(extras.length).padStart(2,'0');
+ const chosen=state.extras.has(cur.label);add.textContent=chosen?'✓ В ритуале · убрать':'＋ Добавить в ритуал · '+cur.price;add.classList.toggle('is-added',chosen);add.setAttribute('aria-pressed',String(chosen));
+ const satEls=document.querySelectorAll('.product-satellite');satEls.forEach((el,j)=>{const offsets=[-2,-1,1,2];const i=(activeProduct+offsets[j]+extras.length)%extras.length;el.dataset.index=i;el.innerHTML=productArtwork(i);el.setAttribute('aria-label','Посмотреть '+extras[i].label)});
+}
+function updateProductSatellites(t){
+ if(state.step!==5)return;
+ const s=document.querySelectorAll('.product-satellite'); if(s.length!==4)return;
+ const rect=scene.getBoundingClientRect(),mobile=rect.width<620;
+ for(let i=0;i<4;i++){
+  let angle=t*.37+i*Math.PI/2+.35;
+  const rx=mobile?Math.min(145,rect.width*.395):Math.min(275,rect.width*.36);
+  const ry=mobile?85:125;
+  const x=Math.cos(angle)*rx;const y=Math.sin(angle)*ry;
+  const el=s[i];el.style.left=`calc(50% + ${x}px)`;el.style.top=`calc(44% + ${y}px)`;
+  el.style.transform=`translate(-50%,-50%) scale(${.77+Math.sin(angle)*.15})`;
+  el.style.opacity=String(.76+Math.sin(angle)*.16);el.style.zIndex=Math.sin(angle)>0?'15':'10';
+ }
+}
+function makeProductGallery(){
+ scene.classList.add('product-scene');
+ controls.innerHTML=`<div class="product-gallery"><div class="exhibit-base"></div><div class="product-main-art" id="productArt" aria-hidden="true"></div>
+ <button class="product-satellite" data-slot="0" type="button"></button><button class="product-satellite" data-slot="1" type="button"></button><button class="product-satellite" data-slot="2" type="button"></button><button class="product-satellite" data-slot="3" type="button"></button>
+ <div class="product-nav"><button type="button" class="product-arrow prev" aria-label="Предыдущая услуга" id="productPrev">‹</button><button type="button" class="product-arrow next" aria-label="Следующая услуга" id="productNext">›</button></div>
+ <div class="product-description"><div class="product-kicker" id="productKicker"></div><div class="product-name" id="productName"></div><div class="product-amount" id="productPrice"></div></div>
+ <div class="product-actions"><button type="button" class="product-add" id="productAdd"></button><span class="product-pos" id="productPos"></span></div></div>`;
+ $('#productPrev').addEventListener('click',()=>selectProduct(activeProduct-1));$('#productNext').addEventListener('click',()=>selectProduct(activeProduct+1));
+ $('#productAdd').addEventListener('click',()=>{const key=extras[activeProduct].label;if(state.extras.has(key))state.extras.delete(key);else state.extras.add(key);selectedExtrasUi();selectProduct(activeProduct)});
+ controls.querySelectorAll('.product-satellite').forEach(x=>x.addEventListener('click',()=>selectProduct(Number(x.dataset.index))));
+ let touchX=null;controls.addEventListener('touchstart',e=>{if(e.touches.length===1)touchX=e.touches[0].clientX},{passive:true});
+ controls.addEventListener('touchend',e=>{if(touchX!==null&&e.changedTouches.length){const diff=e.changedTouches[0].clientX-touchX;if(Math.abs(diff)>60)selectProduct(activeProduct+(diff<0?1:-1));touchX=null}},{passive:true});
+ selectProduct(activeProduct);updateProductSatellites(0);
+}
+
 function makeDial(){scene.classList.add('pressure-scene');controls.innerHTML=`<div class="dial" id="dial" role="slider" tabindex="0" aria-label="Интенсивность массажа" aria-valuemin="1" aria-valuemax="5" aria-valuenow="3"><svg viewBox="0 0 330 330" aria-hidden="true"><defs><linearGradient id="dialGrad" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#cae6b5"/><stop offset=".58" stop-color="#bbf3d2"/><stop offset="1" stop-color="#d6b5f0"/></linearGradient></defs><circle class="dial-track" cx="165" cy="165" r="142"/><circle id="dialArc" class="dial-progress" cx="165" cy="165" r="142" transform="rotate(-90 165 165)" /></svg><div class="dial-text"><small>СИЛА КАСАНИЯ</small><b id="dialNum">3</b><span>ИЗ 5</span></div></div><div class="dial-tip">ПРОВЕДИТЕ ПО КОЛЬЦУ · 1—5</div>`;
  const dial=$('#dial');function fromEvent(e){let r=dial.getBoundingClientRect(),x=e.clientX-r.left-r.width/2,y=e.clientY-r.top-r.height/2;let angle=(Math.atan2(y,x)*180/Math.PI+90+360)%360;let n=Math.max(1,Math.min(5,Math.round(angle/360*5)||5));setPressure(n)}
  dial.addEventListener('pointerdown',e=>{dial.setPointerCapture(e.pointerId);fromEvent(e)});dial.addEventListener('pointermove',e=>{if(e.buttons)fromEvent(e)});dial.addEventListener('keydown',e=>{if(e.key==='ArrowUp'||e.key==='ArrowRight'){e.preventDefault();setPressure(Math.min(5,state.pressure+1))}if(e.key==='ArrowDown'||e.key==='ArrowLeft'){e.preventDefault();setPressure(Math.max(1,state.pressure-1))}});setPressure(state.pressure)}
@@ -290,7 +426,8 @@ function project(x,y,z,d){let plane=Math.tan(viewFov/2)*(viewCamera-z),px=50+(x/
 function setHitPos(hit,x,y,z,d,front){let[pX,pY]=project(x,y,z,d);hit.style.left=pX+'%';hit.style.top=(pY+7)+'%';hit.style.opacity=(front<-.35?.72:1).toString();hit.style.zIndex=z>0?'9':'6';hit.style.setProperty('--depth',String(.77+Math.max(-1,Math.min(1,z))*.14))}
 const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;let t0=performance.now(),prev=0,motion=0;let selectedBoost=0;function frame(now){requestAnimationFrame(frame);if(document.hidden)return;const dt=Math.min((now-prev)/1000||.016,.06);prev=now;if(motionEnabled)motion+=dt;let d=resize(),t=motion,n=state.step;if(webglOk){gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);gl.useProgram(prog)}else if(ctx2d){ctx2d.clearRect(0,0,d.width,d.height)}
  const shrink=d.width<470?.83:d.width<700?.9:1;
- if(n===2||n===5){const items=n===2?moods:extras,N=items.length,pts=[];for(let i=0;i<N;i++){let a=t*.54+gestureShift+i/N*Math.PI*2-.5,front=Math.sin(a),x=Math.cos(a)*2.28*shrink,y=Math.sin(a)*1.45*shrink,z=front*.83;let chosen=n===2?state.mood===i:state.extras.has(items[i].label);if(chosen){z+=.42;x*=.95;y*=.94}let s=(n===5?.58:.74)*shrink*(1+front*.12)*(chosen?1.19:1);pts.push({x,y,z,s,item:items[i],i,chosen,a,front})}pts.sort((a,b)=>a.z-b.z);if(hits.length===N)for(let p of pts)setHitPos(hits[p.i],p.x,p.y,p.z,d,p.front)}
+ if(n===5){updateProductSatellites(t)}
+ if(n===2){const items=moods,N=items.length,pts=[];for(let i=0;i<N;i++){let a=t*.54+gestureShift+i/N*Math.PI*2-.5,front=Math.sin(a),x=Math.cos(a)*2.28*shrink,y=Math.sin(a)*1.45*shrink,z=front*.83;let chosen=n===2?state.mood===i:state.extras.has(items[i].label);if(chosen){z+=.42;x*=.95;y*=.94}let s=(n===5?.58:.74)*shrink*(1+front*.12)*(chosen?1.19:1);pts.push({x,y,z,s,item:items[i],i,chosen,a,front})}pts.sort((a,b)=>a.z-b.z);if(hits.length===N)for(let p of pts)setHitPos(hits[p.i],p.x,p.y,p.z,d,p.front)}
  else if(n===3){drawMesh(2,0,0,-.32,(1.18+state.pressure*.11)*shrink,state.pressure>3?'#d3c0ed':'#bbefd5',t*.11,t*.20,t*.07,t,.35+state.pressure*.12);drawMesh(1,0,0,-1.65,2.0*shrink,'#52716a',1.0,t*.16,.4,t,.05)}
  else if(n===4){drawMesh(2,0,0,-2.1,1.85*shrink,'#4d7774',t*.08,t*.12,0,t,.2)}
  else if(n===6){drawMesh(2,0,0,-.3,1.36*shrink,'#d8c1e8',t*.16,t*.20,t*.12,t,1);for(let i=0;i<4;i++){let a=t*.35+i*Math.PI/2,x=Math.cos(a)*2.12*shrink,y=Math.sin(a)*1.45*shrink,z=Math.sin(a)*.5;drawMesh(i%2,x,y,z,.36*shrink,['#b0e0d0','#c7b5f3','#e8caa9','#c6d7f4'][i],t*.4+i,t*.33,0,t,1)}}
