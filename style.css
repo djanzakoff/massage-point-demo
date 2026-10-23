@@ -5,3 +5,5 @@
 .keypad,.keypad button,.phone{touch-action:manipulation}
 .intensity-dial .value{width:55%}.intensity-name{display:block;margin-top:12px;font-size:clamp(15px,2.5vw,22px);font-weight:500;color:#74388c;letter-spacing:-.4px;line-height:1.25}.intensity-description{text-align:center;font-size:14px;line-height:1.7;color:#88758f;max-width:380px;min-height:48px;margin:0 auto 12px}.intensity-dial button{touch-action:manipulation}.intensity-dial svg path{transition:stroke .2s}.intensity-dial .value strong{font-size:clamp(42px,7vw,60px)}
 .intensity-dial button:not(.active){background:#f6eef9;color:#71378a;box-shadow:0 2px 10px #69377e0d}
+
+.orbit-labels{display:grid;overflow:hidden;touch-action:pan-y}.orbit-label{grid-area:1/1;width:100%;will-change:transform,opacity}.orbit-label .type-description{padding:0 5px}.orbit-label .type-name{max-width:100%}
